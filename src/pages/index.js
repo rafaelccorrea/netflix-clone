@@ -6,7 +6,7 @@ import FeatureMovie from '../components/destaque/FeaturedMovie'
 export default function Home() {
 
     const [movieList, setMovieList] = useState([]);
-    const [featuredData, setFeatureData] = useState(null);
+    const [featuredData, setFeaturedData] = useState(null);
 
     useEffect(() => {
         const loadAll = async () => {
@@ -16,7 +16,8 @@ export default function Home() {
             let originals = list.filter(item => item.slug === 'originals')
             let random = Math.floor(Math.random() * (originals[0].items.results.length -1));
             let chosen = originals[0].items.results[random];
-
+            let chosenInfo = await api.getMovieInfo(chosen.id, 'tv')
+            setFeaturedData(chosenInfo);
         }
 
         loadAll();
