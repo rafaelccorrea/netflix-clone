@@ -8,8 +8,25 @@
 
 .listarea {
     overflow: hidden;
+    padding-left: 30px;
+}
+
+.list {
+    width: 999999999px;
 }
 
 .item {
     display: inline-block;
+    width: 150px;
+    cursor: pointer;
+}
+
+.img {
+    width: 100%;
+    transform: scale(0.9);
+    transition: all ease 0.2s;
+}
+
+.img:hover {
+    transform: scale(1)
 }
