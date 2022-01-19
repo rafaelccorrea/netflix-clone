@@ -1,12 +1,14 @@
 import api from '../api/Tmdb'
 import React, {useEffect, useState} from 'react'
-import MovieRow from '../components/lista/MovieRow'
-import FeatureMovie from '../components/destaque/FeaturedMovie'
+import MovieRow from '../components/lista'
+import FeatureMovie from '../components/destaque'
+import Header from '../components/header'
 
 export default function Home() {
 
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null);
+    const [blackHeader, setBlackHeader] = useState(false);
 
     useEffect(() => {
         const loadAll = async () => {
@@ -23,8 +25,28 @@ export default function Home() {
         loadAll();
     },[])
 
+    useEffect(() => {
+        const scrollListener = () => {
+            if(window.scrollY > 10){
+                setBlackHeader(true);
+            }else{
+                setBlackHeader(false);
+            }
+        }
+
+        window.addEventListener('scroll', scrollListener);
+        return()=> {
+            window.removeEventListener('scroll', scrollListener);
+        }
+    }, [])
+
     return (
         <div className='page'>
+
+            <Header
+                black={blackHeader}
+            />
+
             {featuredData && 
                 <FeatureMovie
                     item={featuredData}
