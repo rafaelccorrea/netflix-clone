@@ -60,6 +60,10 @@ export default function Home() {
                     />
                 ))}
             </section>
+            <footer>
+                Feito por Rafael Correa <br/>
+                Direitos de imagem para NetFlix
+            </footer>
         </div>
     );
 }
